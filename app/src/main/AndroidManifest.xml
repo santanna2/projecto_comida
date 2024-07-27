@@ -13,22 +13,16 @@
         android:theme="@style/Theme.Tacoraronaldoo"
         tools:targetApi="31">
         <activity
-            android:name=".CuentaActivity"
+            android:name=".activitys.CarteraActivity"
             android:exported="false" />
         <activity
-            android:name=".homeActivity"
+            android:name=".activitys.CuentaActivity"
             android:exported="false" />
         <activity
-            android:name=".welcomeActivity"
+            android:name=".activitys.homeActivity"
             android:exported="false" />
         <activity
-            android:name=".registerActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".activitys.welcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +30,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activitys.registerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".dataBase.RegisterGuardadoActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

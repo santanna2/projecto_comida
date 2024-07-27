@@ -6,12 +6,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-    <!--Listasimple-->
-    <!--Dataclass manejo obejtos o datos-->
+    tools:context=".activitys.MainActivity">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPlato"
+        android:id="@+id/viewUno"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package tacora.ronald.tacoraronaldo_o
+package tacora.ronald.tacoraronaldo_o.activitys
 
 data class PlatoModel(val nombre: String,
                       val edad: Int,

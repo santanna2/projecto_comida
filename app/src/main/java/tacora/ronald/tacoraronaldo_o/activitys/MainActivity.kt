@@ -1,4 +1,4 @@
-package tacora.ronald.tacoraronaldo_o
+package tacora.ronald.tacoraronaldo_o.activitys
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import tacora.ronald.tacoraronaldo_o.R
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")

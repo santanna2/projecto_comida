@@ -1,10 +1,12 @@
-package tacora.ronald.tacoraronaldo_o
+package tacora.ronald.tacoraronaldo_o.activitys
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import tacora.ronald.tacoraronaldo_o.R
+import tacora.ronald.tacoraronaldo_o.activitys.PlatoModel
 
 class PlatosModelAdapter: RecyclerView.Adapter<PlatosModelAdapter.ViewHolder>() {
 

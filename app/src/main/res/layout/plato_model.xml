@@ -41,35 +41,41 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
+                    android:orientation="vertical"
                     android:padding="16dp">
 
                     <TextView
-                        android:id="@+id/modelRestaurant"
+                        android:id="@+id/modelPlato"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Nombre de Restaurant"
+                        android:text="Nombre de Plato"
                         android:textSize="18sp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toTopOf="@+id/modelCategory" />
-
+                        app:layout_constraintEnd_toEndOf="parent" />
                     <TextView
-                        android:id="@+id/modelCategory"
+                        android:id="@+id/modelComida"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:text="Categoría"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent" />
+                    <TextView
+                        android:id="@+id/modelPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre de Restaurant"
+                        android:textSize="18sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
@@ -87,9 +93,9 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:textSize="13dp"
+                        android:textSize="12dp"
                         android:padding="1dp"
-                        android:text="Ingresar" />
+                        android:text="añadir" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -99,7 +105,7 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="13dp"
+                        android:textSize="12dp"
                         android:padding="1dp"
                         android:text="Información" />
                 </androidx.cardview.widget.CardView>

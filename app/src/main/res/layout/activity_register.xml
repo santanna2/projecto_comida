@@ -6,7 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".registerActivity">
+    android:background="#eae3b8"
+    tools:context=".activitys.registerActivity">
 
     <TextView
         android:id="@+id/regisView"
@@ -90,10 +91,10 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
-        android:id="@+id/etDireccion"
+        android:id="@+id/etEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Direccion"
+        android:hint="Correo Electronico"
         android:textColor="#FFF"
 
         android:layout_marginStart="20dp"
@@ -112,14 +113,14 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnContinuar"
+        app:layout_constraintEnd_toStartOf="@+id/btnRegistrar"
         app:layout_constraintHorizontal_chainStyle="spread"/>
 
     <Button
-        android:id="@+id/btnContinuar"
+        android:id="@+id/btnRegistrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Continuar"
+        android:text="Registrar"
         app:layout_constraintTop_toBottomOf="@id/etPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnCancelar"
@@ -137,7 +138,7 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnContinuar"
+        app:layout_constraintTop_toBottomOf="@id/btnCancelar"
         />
 
     <LinearLayout
