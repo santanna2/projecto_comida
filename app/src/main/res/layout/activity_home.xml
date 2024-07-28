@@ -28,6 +28,7 @@
         tools:ignore="MissingConstraints">
 
         <LinearLayout
+            android:id="@+id/salirzz"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.9"
@@ -35,6 +36,7 @@
             android:padding="10dp">
 
             <ImageView
+                android:id="@+id/btnSalir"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/img"
@@ -47,6 +49,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btnCartera"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6"
@@ -73,6 +76,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btnCuenta"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.6"

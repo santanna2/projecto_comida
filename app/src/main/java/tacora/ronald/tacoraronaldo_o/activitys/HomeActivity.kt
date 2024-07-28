@@ -1,7 +1,10 @@
 package tacora.ronald.tacoraronaldo_o.activitys
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -9,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tacora.ronald.tacoraronaldo_o.R
+import tacora.ronald.tacoraronaldo_o.frangments.VistaCarta
 import tacora.ronald.tacoraronaldo_o.recyclers.RestaurantAdapter
 import tacora.ronald.tacoraronaldo_o.recyclers.RestaurantCompany
 
@@ -24,8 +28,27 @@ class homeActivity : AppCompatActivity() {
             insets
         }
 
+        val salirzz = findViewById<LinearLayout>(R.id.salirzz)
+        val cartera = findViewById<LinearLayout>(R.id.btnCartera)
+        val cuenta = findViewById<LinearLayout>(R.id.btnCuenta)
+        salirzz.setOnClickListener{
+            finish()
+        }
+
+        cartera.setOnClickListener{
+            val intent3 = Intent(this, CarteraActivity::class.java)
+            startActivity(intent3)
+            finish()
+        }
+        cuenta.setOnClickListener{
+            val intent4 = Intent(this, CuentaActivity::class.java)
+            startActivity(intent4)
+            finish()
+        }
+
         val restauAdapter = RestaurantAdapter()
         val rv = findViewById<RecyclerView>(R.id.pasarelaRestaurant)
+
 
         rv.apply {
             adapter = restauAdapter
@@ -47,6 +70,7 @@ class homeActivity : AppCompatActivity() {
             ListaRestaurant.add(RestaurantCompany("juwean","seww","img"))
 
 
-    restauAdapter.actualizarLista(ListaRestaurant)
+        restauAdapter.actualizarLista(ListaRestaurant)
+
     }
 }

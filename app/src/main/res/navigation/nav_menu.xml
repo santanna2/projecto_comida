@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_menu"
+    app:startDestination="@id/main">
+    <item
+        android:id="@+id/firstFragment"
+        android:name="tacora.ronald.tacoraronaldo_o.frangments.FirstFragment"
+        android:icon="@drawable/indentificador"
+        android:title="Desayuno" />
+    <item
+        android:id="@+id/secondFragment"
+        android:name="tacora.ronald.tacoraronaldo_o.frangments.SecondFragment"
+        android:icon="@drawable/indentificador"
+        android:title="Almuerzo" />
+    <item
+        android:id="@+id/tirdFragment"
+        android:name="tacora.ronald.tacoraronaldo_o.frangments.cenaFragment"
+        android:icon="@drawable/indentificador"
+        android:title="Cena" />
+</menu >

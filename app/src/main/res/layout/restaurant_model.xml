@@ -85,6 +85,7 @@
                     android:layout_marginBottom="10dp"
                     app:cardCornerRadius="10dp">
                     <Button
+                        android:id="@+id/rv_res_ingresar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textSize="13dp"
@@ -97,6 +98,7 @@
                     android:layout_height="match_parent"
                     app:cardCornerRadius="10dp">
                     <Button
+                        android:id="@+id/rv_res_informacion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
