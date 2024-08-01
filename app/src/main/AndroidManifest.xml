@@ -13,6 +13,21 @@
         android:theme="@style/Theme.Tacoraronaldoo"
         tools:targetApi="31">
         <activity
+            android:name=".activitys.RegistrarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".dataBase.RegistroRestaurant"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.CarritoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.CalificarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.SeguimientoActivity"
+            android:exported="false" />
+        <activity
             android:name=".activitys.HistorialActivity"
             android:exported="false" />
         <activity
@@ -32,7 +47,7 @@
             android:name=".activitys.CuentaActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.homeActivity"
+            android:name=".activitys.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".activitys.welcomeActivity"
@@ -44,7 +59,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activitys.registerActivity"
+            android:name=".dataBase.registerActivity"
             android:exported="false" />
         <activity
             android:name=".activitys.LoginActivity"

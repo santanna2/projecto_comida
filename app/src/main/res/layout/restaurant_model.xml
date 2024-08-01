@@ -14,7 +14,7 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
         android:padding="16dp"
-        app:cardBackgroundColor="#CCA6A6">
+        app:cardBackgroundColor="#51CCA6A6">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,6 +51,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textColor="@color/black"
                         android:text="Nombre de Restaurant"
                         android:textSize="18sp"
                         app:layout_constraintTop_toTopOf="parent"
@@ -63,6 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textColor="@color/black"
                         android:text="Categoría"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +91,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textSize="13dp"
+                        android:backgroundTint="#9B59A6"
                         android:padding="1dp"
                         android:text="Ingresar" />
                 </androidx.cardview.widget.CardView>
@@ -101,6 +104,7 @@
                         android:id="@+id/rv_res_informacion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="#9B59A6"
                         android:textSize="13dp"
                         android:padding="1dp"
                         android:text="Información" />

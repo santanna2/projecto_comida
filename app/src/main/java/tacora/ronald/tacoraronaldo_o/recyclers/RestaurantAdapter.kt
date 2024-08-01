@@ -1,5 +1,6 @@
 package tacora.ronald.tacoraronaldo_o.recyclers
 
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -10,20 +11,23 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tacora.ronald.tacoraronaldo_o.R
-import tacora.ronald.tacoraronaldo_o.activitys.CuentaActivity
-import tacora.ronald.tacoraronaldo_o.activitys.InformacionActivity
 import tacora.ronald.tacoraronaldo_o.activitys.MenuCartaActivity
 import tacora.ronald.tacoraronaldo_o.activitys.RestaurantInformacion
+import tacora.ronald.tacoraronaldo_o.dataModel.ModelRestaurant
 
 
-class RestaurantAdapter: RecyclerView.Adapter<RestaurantAdapter.ViewHolder>(){
+class RestaurantAdapter(
+    private val restaurantList: List<ModelRestaurant>,
+    private val context: Context
+) : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     var restaurant1:List<RestaurantCompany> = emptyList()
+
     fun actualizarLista(lst:List<RestaurantCompany>){
         restaurant1 = lst
         notifyDataSetChanged()
     }
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val rvRestaurant = view.findViewById<TextView>(R.id.modelRestaurant)
         val rvCategory = view.findViewById<TextView>(R.id.modelCategory)
         val rvImagine = view.findViewById<ImageView>(R.id.portadaRestaurant)
@@ -32,41 +36,37 @@ class RestaurantAdapter: RecyclerView.Adapter<RestaurantAdapter.ViewHolder>(){
         val btnInformacion = view.findViewById<Button>(R.id.rv_res_informacion)
 
         fun setValues(model: RestaurantCompany){
-            rvRestaurant.setText(model.restaurant)
-            rvCategory.setText(model.category)
 
-            Glide.with(itemView.context)
-                .load(model.imagine)
-                //.load(R.drawable.img) // Puedes usar un recurso drawable si es local, por ejemplo R.drawable.mi_imagen
-                .into(rvImagine)
-
-            btnIngresar.setOnClickListener {
-                // Puedes pasar información específica si es necesario
-                val context = itemView.context
-                val intent = Intent(context, MenuCartaActivity::class.java)
-                context.startActivity(intent)
-            }
-
-            btnInformacion.setOnClickListener {
-                // Puedes pasar información específica si es necesario
-                val context = itemView.context
-                val intent = Intent(context, RestaurantInformacion::class.java)
-                context.startActivity(intent)
-            }
         }
     }
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.restaurant_model,parent,false)
-            return ViewHolder(view)
+            return RestaurantViewHolder(view)
         }
 
-        override fun getItemCount(): Int {
-            //el tamaño de mi lista
-            return restaurant1.size
+    override fun getItemCount() = restaurantList.size
+
+    override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
+        val restaurant = restaurantList[position]
+        holder.rvRestaurant.text = restaurant.name
+        holder.rvCategory.text = restaurant.category
+
+        Glide.with(holder.rvImagine.context)
+            .load(restaurant.img) // Cargar la imagen desde la URL
+            .into(holder.rvImagine)
+
+        holder.btnIngresar.setOnClickListener {
+            val intent = Intent(context, MenuCartaActivity::class.java)
+            intent.putExtra("RESTAURANT_ID", restaurant.id) // Pasar el ID del restaurante si es necesario
+            context.startActivity(intent)
         }
 
-        override fun onBindViewHolder(holder:ViewHolder, position: Int) {
-            holder.setValues(restaurant1[position])
+        // Configurar clic en btnInformacion para abrir la información del restaurante
+        holder.btnInformacion.setOnClickListener {
+            val intent = Intent(context, RestaurantInformacion::class.java)
+            intent.putExtra("RESTAURANT_ID", restaurant.id) // Pasar el ID del restaurante si es necesario
+            context.startActivity(intent)
         }
-
+    }
 }
+

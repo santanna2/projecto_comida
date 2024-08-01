@@ -20,19 +20,13 @@
             android:layout_weight="1"
             android:orientation="horizontal">
                 <LinearLayout
-                    android:id="@+id/salirzz"
+                    android:id="@+id/volver"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.7"
+                    android:background="@drawable/ic_back"
                     android:gravity="center">
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/img"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+
 
                 </LinearLayout>
 
@@ -55,7 +49,7 @@
                         android:textSize="20sp" />
 
                     <ImageView
-                        android:src="@drawable/img"
+                        android:src="@drawable/ic_carrito"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
@@ -83,9 +77,9 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.5"
-                    android:src="@drawable/img" />
+                    android:src="@drawable/ic_cuenta" />
             </LinearLayout>
         </LinearLayout>
 
@@ -115,6 +109,5 @@
                 android:layout_marginBottom="56dp" />
         </LinearLayout>
     </LinearLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

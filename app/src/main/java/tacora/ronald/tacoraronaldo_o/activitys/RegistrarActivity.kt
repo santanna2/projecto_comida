@@ -1,7 +1,6 @@
 package tacora.ronald.tacoraronaldo_o.activitys
 
 import android.annotation.SuppressLint
-import androidx.activity.enableEdgeToEdge
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
@@ -14,12 +13,13 @@ import tacora.ronald.tacoraronaldo_o.R
 import tacora.ronald.tacoraronaldo_o.dataBase.BiteDataBaseHelper
 import tacora.ronald.tacoraronaldo_o.dataBase.RegisterGuardadoActivity
 
-class registerActivity : AppCompatActivity() {
+class RegistrarActivity : AppCompatActivity() {
 
     private lateinit var nameEditText: EditText
-    private lateinit var usernameEditText: EditText
     private lateinit var apellidoEditText: EditText
+    private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
+    private lateinit var telefonoEditText: EditText
     private lateinit var emailEditText: EditText
 
     private lateinit var dbHelper: BiteDataBaseHelper
@@ -27,12 +27,13 @@ class registerActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_registrar)
 
         nameEditText = findViewById(R.id.etNombre)
         apellidoEditText = findViewById(R.id.etApellido)
         usernameEditText = findViewById(R.id.etUsuario)
         passwordEditText = findViewById(R.id.etPassword)
+        telefonoEditText = findViewById(R.id.etTelefono)
         emailEditText = findViewById(R.id.etEmail)
 
         val registerButton: Button = findViewById(R.id.btnRegistrar)
@@ -45,9 +46,10 @@ class registerActivity : AppCompatActivity() {
             val apellido = apellidoEditText.text.toString().trim()
             val username = usernameEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
+            val telefono = telefonoEditText.text.toString().trim()
             val email = emailEditText.text.toString().trim()
 
-            if (name.isEmpty() ||apellido.isEmpty()|| username.isEmpty() || password.isEmpty() || email.isEmpty()) {
+            if (name.isEmpty() ||apellido.isEmpty()|| username.isEmpty() || password.isEmpty() ||telefono.isEmpty() || email.isEmpty()) {
                 Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -62,6 +64,7 @@ class registerActivity : AppCompatActivity() {
                     apellido,
                     username,
                     password,
+                    telefono,
                     email
                 )) {
                 val intent = Intent(this, RegisterGuardadoActivity::class.java)
@@ -83,7 +86,8 @@ class registerActivity : AppCompatActivity() {
         apellido: String,
         username: String,
         password: String,
-        email: String,
+        telefono: String,
+        email: String
     ): Boolean {
         val db = dbHelper.writableDatabase
         val values = ContentValues().apply {
@@ -91,6 +95,7 @@ class registerActivity : AppCompatActivity() {
             put(BiteDataBaseHelper.COLUMN_APELLIDO, apellido)
             put(BiteDataBaseHelper.COLUMN_USERNAME, username)
             put(BiteDataBaseHelper.COLUMN_PASSWORD, password)
+            put(BiteDataBaseHelper.COLUMN_TELEFONO, telefono)
             put(BiteDataBaseHelper.COLUMN_EMAIL, email)
         }
 

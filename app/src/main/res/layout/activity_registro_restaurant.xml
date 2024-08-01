@@ -1,0 +1,67 @@
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".dataBase.RegistroRestaurant">
+
+    <EditText
+        android:id="@+id/etRestaurantName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del Restaurante" />
+
+    <EditText
+        android:id="@+id/etRestaurantCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etRestaurantName"
+        android:hint="Categoría del Restaurante" />
+
+    <EditText
+        android:id="@+id/etRestaurantRank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etRestaurantCategory"
+        android:hint="Rango del Restaurante"
+        android:inputType="numberDecimal" />
+    <EditText
+        android:id="@+id/etRestaurantImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etRestaurantRank"
+        android:hint="url imagen"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/etRestaurantAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etRestaurantImg"
+        android:hint="Dirección del Restaurante" />
+
+    <EditText
+        android:id="@+id/etRestaurantPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etRestaurantAddress"
+        android:hint="Teléfono del Restaurante"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etRestaurantPhone"
+        android:text="Guardar" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/etRestaurantPhone"
+        android:text="Cancelar" />
+</RelativeLayout>

@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import tacora.ronald.tacoraronaldo_o.R
 import tacora.ronald.tacoraronaldo_o.dataBase.BiteDataBaseHelper
-import tacora.ronald.tacoraronaldo_o.dataBase.RegisterGuardadoActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -24,7 +22,6 @@ class LoginActivity : AppCompatActivity() {
         usernameEditText = findViewById(R.id.etUsuario)
         passwordEditText = findViewById(R.id.etPassword)
         val loginButton: Button = findViewById(R.id.btnIngresar)
-
         val registerButton: Button = findViewById(R.id.btnRegister)
 
         dbHelper = BiteDataBaseHelper(this)
@@ -38,28 +35,60 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (checkUserCredentials(username, password)) {
-                val intent = Intent(this, homeActivity::class.java) // O la actividad que desees iniciar
+            val userId = checkUserCredentials(username, password)
+            if (userId != null) {
+                // Cambiado: Almacena el ID del usuario en SharedPreferences
+                val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putInt("user_code", userId)
+                editor.apply()
+
+                // Inicia la actividad de inicio después de iniciar sesión
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
                 finish()
-            } else {
+            }
+            else {
                 Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
             }
         }
         registerButton.setOnClickListener{
-            val intent = Intent(this, registerActivity::class.java)
+            val intent = Intent(this, RegistrarActivity::class.java)
             startActivity(intent)
             finish()
         }
 
     }
+    private fun checkUserCredentials(username: String, password: String): Int? {
+        val db = dbHelper.readableDatabase
 
-    private fun checkUserCredentials(username: String, password: String): Boolean {
+        val selection = "${BiteDataBaseHelper.COLUMN_USERNAME} = ? AND ${BiteDataBaseHelper.COLUMN_PASSWORD} = ?"
+        val selectionArgs = arrayOf(username, password)
+
+        val cursor = db.query(
+            BiteDataBaseHelper.TABLE_NAME,
+            arrayOf(BiteDataBaseHelper.COLUMN_ID),
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        )
+        var userId: Int? = null
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(cursor.getColumnIndexOrThrow(BiteDataBaseHelper.COLUMN_ID))
+        }
+        cursor.close()
+        return userId
+    }
+    //checkUserCredentials
+    private fun cambiar(username: String, password: String): Boolean {
         val db = dbHelper.readableDatabase
         val selection = "${BiteDataBaseHelper.COLUMN_USERNAME} = ? AND ${BiteDataBaseHelper.COLUMN_PASSWORD} = ?"
         val selectionArgs = arrayOf(username, password)
         val cursor = db.query(
             BiteDataBaseHelper.TABLE_NAME,
+
             null,
             selection,
             selectionArgs,

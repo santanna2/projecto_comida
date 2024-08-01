@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.MainActivity">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/viewUno"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:padding="16dp"
+    tools:context=".activitys.welcomeActivity">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etPlatoName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del Plato"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etPlatoPrecio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Precio"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/etPlatoCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Categoría"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etPlatoRank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Calificación"
+            android:inputType="numberDecimal" />
+
+        <EditText
+            android:id="@+id/etPlatoImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="URL de Imagen"
+            android:inputType="textUri" />
+
+        <EditText
+            android:id="@+id/etPlatoDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descripción"
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/btnRegisterPlato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar Plato" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

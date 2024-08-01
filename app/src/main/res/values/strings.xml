@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">tacora.ronaldo-o</string>
+    <string name="app_name">Delicious Bite</string>
     <string name="title_activity_register">registerActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

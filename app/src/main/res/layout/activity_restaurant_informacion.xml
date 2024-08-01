@@ -2,9 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#FFFFFF"
-    android:padding="16dp">
+    android:background="@drawable/fondo_mesa"
+    android:padding="16dp"
+    tools:context=".activitys.RestaurantInformacion">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/img_rest" />
 
             <!-- Name of the Restaurant -->
             <TextView
@@ -101,8 +103,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Ordenar"
-                android:textColor="@android:color/white"
-                android:background="?attr/colorPrimary" />
+                android:layout_margin="10dp"
+                android:textColor="@android:color/white"/>
 
             <Button
                 android:id="@+id/btnCalificar"
@@ -110,8 +112,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Calificar"
-                android:textColor="@android:color/white"
-                android:background="?attr/colorPrimary" />
+                android:layout_margin="10dp"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 

@@ -21,8 +21,8 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <ListView
-            android:id="@+id/lvBreakfast"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/itemDesayuno"
             android:background="#C386CD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

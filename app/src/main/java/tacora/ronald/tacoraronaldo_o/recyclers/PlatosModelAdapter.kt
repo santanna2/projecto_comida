@@ -1,4 +1,4 @@
-package tacora.ronald.tacoraronaldo_o.activitys
+package tacora.ronald.tacoraronaldo_o.recyclers
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import tacora.ronald.tacoraronaldo_o.R
-import tacora.ronald.tacoraronaldo_o.activitys.PlatoModel
 
 class PlatosModelAdapter: RecyclerView.Adapter<PlatosModelAdapter.ViewHolder>() {
 
@@ -18,19 +17,17 @@ class PlatosModelAdapter: RecyclerView.Adapter<PlatosModelAdapter.ViewHolder>() 
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvNombre = view.findViewById<TextView>(R.id.tvNombre)
-        val tvEdad = view.findViewById<TextView>(R.id.tvEdad)
-        val tvGenero = view.findViewById<TextView>(R.id.tvGenero)
+        val tvNombre = view.findViewById<TextView>(R.id.modelPlato)
+        val tvCategory = view.findViewById<TextView>(R.id.modelComidaCategory)
+        val tvGenero = view.findViewById<TextView>(R.id.modelPrice)
+
         val tvDireccion = view.findViewById<TextView>(R.id.tvDireccion)
         val tvLogo = view.findViewById<TextView>(R.id.ivLogo)
 
         fun setValues(model: PlatoModel){
-            tvNombre.setText(model.nombre)
-            tvEdad.setText(model.edad.toString() + " años")
-            if(model.genero == true)
-                tvGenero.setText("Masculino")
-            else
-                tvGenero.setText("Femenino")
+            tvNombre.setText(model.name)
+            tvCategory.setText(model.category)
+
         }
     }
 
