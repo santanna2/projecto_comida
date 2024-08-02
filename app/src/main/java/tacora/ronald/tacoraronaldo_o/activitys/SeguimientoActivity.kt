@@ -21,7 +21,7 @@ class SeguimientoActivity : AppCompatActivity() {
             insets
         }
         val volver = findViewById<Button>(R.id.btnVolver)
-        val cartera = findViewById<LinearLayout>(R.id.btnCartera)
+        val cartera = findViewById<Button>(R.id.btnCartera)
 
         volver.setOnClickListener{
             finish()

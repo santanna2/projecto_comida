@@ -25,7 +25,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Ingrese usuario"
-        android:textColor="#FFF"
+        android:textColor="#000000"
         android:textColorHint="@color/black"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
@@ -44,7 +44,7 @@
         android:layout_marginEnd="20dp"
         android:inputType="textPassword"
         android:hint="Ingrese su contraseña"
-        android:textColor="#FFF"
+        android:textColor="#000000"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
