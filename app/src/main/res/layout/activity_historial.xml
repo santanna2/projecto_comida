@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:id="@+id/main"
     android:padding="16dp"
-    android:background="@drawable/ic_hist"
+    android:background="@drawable/atardecer"
     tools:context=".activitys.HistorialActivity">
 
     <TextView
@@ -58,7 +58,7 @@
             android:layout_margin="8dp"
             android:layout_weight="1"
             android:backgroundTint="#72000000"
-            android:text="Seguimiento..."
+            android:text="Seguimiento"
             android:padding="12dp"
             android:elevation="4dp"/>
 
@@ -68,5 +68,6 @@
         android:id="@+id/recyclerViewOrderHistory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_margin="10dp"
         android:layout_weight="1"/>
 </LinearLayout>

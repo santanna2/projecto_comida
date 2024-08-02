@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFB347"
+    android:background="#E3E0C5"
     tools:context=".activitys.welcomeActivity">
 
     <ImageView
@@ -14,7 +14,7 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
 
-        android:src="@drawable/img"
+        android:src="@drawable/monita"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

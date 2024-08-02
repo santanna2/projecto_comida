@@ -15,6 +15,7 @@ import tacora.ronald.tacoraronaldo_o.dataBase.BiteDataBaseHelper
 class CuentaActivity : AppCompatActivity() {
 
     private lateinit var dbHelper: BiteDataBaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -29,22 +30,27 @@ class CuentaActivity : AppCompatActivity() {
         val btnCartera = findViewById<Button>(R.id.btnCartera)
         val btnActualizar = findViewById<Button>(R.id.btnActualizar)
 
-        btnSalir.setOnClickListener{
-            val intent = Intent(this ,HomeActivity::class.java)
+        btnSalir.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }
-        btnCartera.setOnClickListener{
+
+        btnCartera.setOnClickListener {
             val intent = Intent(this, CarteraActivity::class.java)
             startActivity(intent)
             finish()
         }
+
+        btnActualizar.setOnClickListener {
+            val intent = Intent(this, ActualizarCuentaActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         dbHelper = BiteDataBaseHelper(this)
-
         val sharedPreferences: SharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-        val idusuario= sharedPreferences.getInt("user_code", -1)
-
-        val idNew = intent.getIntExtra("IDPASADO", -1)
+        val idusuario = sharedPreferences.getInt("user_code", -1)
 
         if (idusuario != -1) {
             val usuario = dbHelper.MostrarUsuario(idusuario)
@@ -66,5 +72,4 @@ class CuentaActivity : AppCompatActivity() {
             }
         }
     }
-
 }

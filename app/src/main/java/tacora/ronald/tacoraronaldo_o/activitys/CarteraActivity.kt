@@ -21,8 +21,10 @@ class CarteraActivity : AppCompatActivity() {
         }
         val btnPedir = findViewById<Button>(R.id.btnOrderFood)
 
-        btnPedir.setOnClickListener{
-            val intent = Intent(this, HomeActivity::class.java)
+        btnPedir.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
             startActivity(intent)
             finish()
         }

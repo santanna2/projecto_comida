@@ -20,9 +20,10 @@ class CalificarActivity : AppCompatActivity() {
             insets
         }
         val btnVolver = findViewById<Button>(R.id.btnvolver)
-
-        btnVolver.setOnClickListener{
-            val intent = Intent(this, MenuCartaActivity::class.java)
+        btnVolver.setOnClickListener {
+            val intent = Intent(this, MenuCartaActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
             startActivity(intent)
             finish()
         }

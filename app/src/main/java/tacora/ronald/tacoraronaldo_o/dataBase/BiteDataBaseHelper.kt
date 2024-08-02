@@ -271,5 +271,16 @@ class BiteDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         cursor.close()
         return detalles
     }
+    fun ActualizarUsuario(id: Int, nombre: String, apellido: String, usuario: String, contraseña: String, telefono: String, email: String): Int {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_NAME, nombre) // Usar COLUMN_NAME en lugar de "Nombre"
+        contentValues.put(COLUMN_APELLIDO, apellido) // Usar COLUMN_APELLIDO en lugar de "Apellido"
+        contentValues.put(COLUMN_USERNAME, usuario) // Usar COLUMN_USERNAME en lugar de "Usuario"
+        contentValues.put(COLUMN_PASSWORD, contraseña) // Usar COLUMN_PASSWORD en lugar de "Contraseña"
+        contentValues.put(COLUMN_TELEFONO, telefono) // Usar COLUMN_TELEFONO en lugar de "Telefono"
+        contentValues.put(COLUMN_EMAIL, email) // Usar COLUMN_EMAIL en lugar de "Email"
+        return db.update(TABLE_NAME, contentValues, "$COLUMN_ID = ?", arrayOf(id.toString()))
+    }
 
 }

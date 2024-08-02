@@ -22,14 +22,17 @@ class CarritoActivity : AppCompatActivity() {
 
         val btnHome = findViewById<Button>(R.id.btnHome)
         val btnHistorial = findViewById<Button>(R.id.btnHistorial)
-        btnHome.setOnClickListener{
-            val intent = Intent(this, HomeActivity::class.java)
+        btnHome.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
             startActivity(intent)
             finish()
         }
-
-        btnHistorial.setOnClickListener{
-            val intent = Intent(this, HistorialActivity::class.java)
+        btnHistorial.setOnClickListener {
+            val intent = Intent(this, HistorialActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
             startActivity(intent)
             finish()
         }

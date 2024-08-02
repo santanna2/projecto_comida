@@ -5,18 +5,32 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@drawable/fondo_mesa"
     android:padding="16dp"
     tools:context=".activitys.welcomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:background="#52000000"
+        android:gravity="center"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_margin="25dp"
+            android:textSize="24dp"
+            android:text="Agrega Restaurant"/>
 
         <EditText
             android:id="@+id/etPlatoName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColorHint="@color/white"
             android:hint="Nombre del Plato"
             android:inputType="text" />
 
@@ -24,6 +38,8 @@
             android:id="@+id/etPlatoPrecio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            android:layout_weight="1"
             android:hint="Precio"
             android:inputType="numberDecimal" />
 
@@ -31,6 +47,8 @@
             android:id="@+id/etPlatoCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            android:layout_weight="1"
             android:hint="Categoría"
             android:inputType="text" />
 
@@ -38,6 +56,8 @@
             android:id="@+id/etPlatoRank"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            android:layout_weight="1"
             android:hint="Calificación"
             android:inputType="numberDecimal" />
 
@@ -45,20 +65,26 @@
             android:id="@+id/etPlatoImg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            android:layout_weight="1"
             android:hint="URL de Imagen"
             android:inputType="textUri" />
 
         <EditText
             android:id="@+id/etPlatoDescripcion"
             android:layout_width="match_parent"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
             android:hint="Descripción"
             android:inputType="textMultiLine" />
 
         <Button
             android:id="@+id/btnRegisterPlato"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/white"
+            android:layout_weight="1"
             android:text="Registrar Plato" />
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -96,7 +96,7 @@
                         android:layout_height="match_parent"
                         android:textSize="12dp"
                         android:padding="1dp"
-                        android:text="añadir" />
+                        android:background="@drawable/derecha" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView

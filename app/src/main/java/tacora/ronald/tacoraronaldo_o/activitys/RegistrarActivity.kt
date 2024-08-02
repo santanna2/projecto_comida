@@ -76,7 +76,6 @@ class RegistrarActivity : AppCompatActivity() {
             }
         }
         cancelButton.setOnClickListener {
-            // Acción al hacer clic en Cancelar, por ejemplo, regresar a la actividad anterior
             finish()
         }
     }

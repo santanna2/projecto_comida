@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_f_acul"
+    android:background="@drawable/atardecer"
     tools:context=".activitys.CarritoActivity">
     <!-- Toolbar -->
     <LinearLayout
@@ -75,7 +75,7 @@
             android:id="@+id/pasarelaRestaurant"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#3CF5F5F5"
+            android:background="#72F5F5F5"
             android:padding="16dp" />
     </LinearLayout>
 

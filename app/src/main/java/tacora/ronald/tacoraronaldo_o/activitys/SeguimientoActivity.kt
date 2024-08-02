@@ -1,6 +1,9 @@
 package tacora.ronald.tacoraronaldo_o.activitys
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,6 +19,18 @@ class SeguimientoActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        val volver = findViewById<Button>(R.id.btnVolver)
+        val cartera = findViewById<LinearLayout>(R.id.btnCartera)
+
+        volver.setOnClickListener{
+            finish()
+        }
+
+        cartera.setOnClickListener{
+            val intent3 = Intent(this, CarritoActivity::class.java)
+            startActivity(intent3)
+            finish()
         }
     }
 }
