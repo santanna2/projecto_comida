@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import tacora.ronald.tacoraronaldo_o.R
+import tacora.ronald.tacoraronaldo_o.activitys.HomeActivity
 
 class RegistroRestaurant : AppCompatActivity() {
 
@@ -61,7 +62,8 @@ class RegistroRestaurant : AppCompatActivity() {
                     rank,
                     phone
                 )) {
-                val intent = Intent(this, RegisterGuardadoActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
+                Toast.makeText(this, "Registrado con exito", Toast.LENGTH_SHORT).show()
                 startActivity(intent)
                 finish()
 

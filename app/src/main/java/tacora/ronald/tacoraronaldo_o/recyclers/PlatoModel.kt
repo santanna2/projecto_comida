@@ -5,6 +5,8 @@ data class PlatoModel(
     val name: String,
     val precio: Double,
     val category: String,
+    val restaurant: String,
+    val estado: String,
     val rank: Float,
     val img: String,
     val descripcion: String

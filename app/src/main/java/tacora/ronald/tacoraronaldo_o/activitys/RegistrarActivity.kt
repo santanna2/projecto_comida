@@ -67,7 +67,8 @@ class RegistrarActivity : AppCompatActivity() {
                     telefono,
                     email
                 )) {
-                val intent = Intent(this, RegisterGuardadoActivity::class.java)
+                val intent = Intent(this, HomeActivity::class.java)
+                Toast.makeText(this, "Registrado con exito", Toast.LENGTH_SHORT).show()
                 startActivity(intent)
                 finish()
 

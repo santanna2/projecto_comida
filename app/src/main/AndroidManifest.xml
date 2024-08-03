@@ -51,9 +51,6 @@
             android:exported="false" />
         <activity
             android:name=".activitys.HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activitys.welcomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,6 +58,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activitys.welcomeActivity"
+            android:exported="true"/>
         <activity
             android:name=".dataBase.registerActivity"
             android:exported="false" />

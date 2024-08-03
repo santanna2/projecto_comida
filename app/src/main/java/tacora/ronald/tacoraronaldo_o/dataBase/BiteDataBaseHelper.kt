@@ -36,12 +36,15 @@ class BiteDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         const val COLUMN_RESTAURANT_ADRESS = "direccion"
         const val COLUMN_RESTAURANT_PHONE = "telefono"
 
+        // Tabla Plato
         const val TABLE_PLATO = "Plato"
         const val COLUMN_PLATO_ID= "plato_id"
-        const val COLUMN_PLATO_NAME = "nombre"
+        const val COLUMN_PLATO_NAME = "name"
         const val COLUMN_PLATO_PRECIO = "precio"
         const val COLUMN_PLATO_CATEGORY = "categoria"
-        const val COLUMN_PLATO_RANK = "calificacion"
+        const val COLUMN_PLATO_RESTAURANT = "restaurant"
+        const val COLUMN_PLATO_ESTADO = "estado"
+        const val COLUMN_PLATO_RANK = "rank"
         const val COLUMN_PLATO_IMG = "imagen"
         const val COLUMN_PLATO_DESCRIPCION = "descripcion"
 
@@ -92,6 +95,8 @@ class BiteDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
                 + "$COLUMN_PLATO_NAME TEXT, "
                 + "$COLUMN_PLATO_PRECIO REAL, "
                 + "$COLUMN_PLATO_CATEGORY TEXT, "
+                + "$COLUMN_PLATO_RESTAURANT TEXT, "
+                + "$COLUMN_PLATO_ESTADO TEXT, "
                 + "$COLUMN_PLATO_RANK REAL, "
                 + "$COLUMN_PLATO_IMG TEXT, "
                 + "$COLUMN_PLATO_DESCRIPCION TEXT)"
@@ -208,46 +213,20 @@ class BiteDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         cursor.close()
         return restaurantList
     }
-    fun insertarPlato(name: String, precio: Double, category: String, rank: Double, img: String, descripcion: String): Boolean {
+    fun insertarPlato(name: String, precio: Double, category: String, restaurant: String, estado: String, rank: Double, img: String, descripcion: String): Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(COLUMN_PLATO_NAME, name)
         contentValues.put(COLUMN_PLATO_PRECIO, precio)
         contentValues.put(COLUMN_PLATO_CATEGORY, category)
+        contentValues.put(COLUMN_PLATO_RESTAURANT, restaurant)
+        contentValues.put(COLUMN_PLATO_ESTADO, estado)
         contentValues.put(COLUMN_PLATO_RANK, rank)
         contentValues.put(COLUMN_PLATO_IMG, img)
         contentValues.put(COLUMN_PLATO_DESCRIPCION, descripcion)
 
         val result = db.insert(TABLE_PLATO, null, contentValues)
         return result != -1L
-    }
-
-    fun obtenerPlatosPorRestaurant(restaurantId: Int): List<PlatoModel> {
-        val platoList = mutableListOf<PlatoModel>()
-        val db = this.readableDatabase
-
-        val query = """
-        SELECT p.* FROM $TABLE_PLATO p
-        INNER JOIN $TABLE_RESTAURANT_PLATO rp ON p.${COLUMN_PLATO_ID} = rp.${COLUMN_RESTAURANT_PLATO_PLATO_ID}
-        WHERE rp.${COLUMN_RESTAURANT_PLATO_RESTAURANT_ID} = ?
-    """.trimIndent()
-
-        val cursor = db.rawQuery(query, arrayOf(restaurantId.toString()))
-        if (cursor.moveToFirst()) {
-            do {
-                val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_PLATO_ID))
-                val name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_NAME))
-                val precio = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PLATO_PRECIO))
-                val category = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_CATEGORY))
-                val rank = cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_PLATO_RANK))
-                val img = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_IMG))
-                val descripcion = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_DESCRIPCION))
-
-                platoList.add(PlatoModel(id, name, precio, category, rank, img, descripcion))
-            } while (cursor.moveToNext())
-        }
-        cursor.close()
-        return platoList
     }
 
     fun obtenerHistorialPedidos(usuarioId: Int): List<DetallePedidoModel> {
@@ -282,5 +261,36 @@ class BiteDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         contentValues.put(COLUMN_EMAIL, email) // Usar COLUMN_EMAIL en lugar de "Email"
         return db.update(TABLE_NAME, contentValues, "$COLUMN_ID = ?", arrayOf(id.toString()))
     }
+    fun menu(id: Int, categoria: String): List<PlatoModel> {
+        val db = this.readableDatabase
+        val query = """
+    SELECT p.$COLUMN_PLATO_ID, p.$COLUMN_PLATO_NAME, p.$COLUMN_PLATO_PRECIO, p.$COLUMN_PLATO_CATEGORY, p.$COLUMN_PLATO_RESTAURANT, p.$COLUMN_PLATO_ESTADO, p.$COLUMN_PLATO_RANK, p.$COLUMN_PLATO_IMG, p.$COLUMN_PLATO_DESCRIPCION
+    FROM $TABLE_PLATO p
+    INNER JOIN $TABLE_RESTAURANT r
+    ON p.$COLUMN_PLATO_RESTAURANT = r.$COLUMN_RESTAURANT_NAME
+    WHERE r.$COLUMN_RESTAURANT_ID = ?
+    AND p.$COLUMN_PLATO_CATEGORY = ?
+    """
+        val cursor = db.rawQuery(query, arrayOf(id.toString(), categoria))
+        val platos = mutableListOf<PlatoModel>()
+        if (cursor.moveToFirst()) {
+            do {
+                val platoId = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_PLATO_ID))
+                val name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_NAME))
+                val precio = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PLATO_PRECIO))
+                val category = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_CATEGORY))
+                val restaurant = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_RESTAURANT))
+                val estado = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_ESTADO))
+                val rank = cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_PLATO_RANK))
+                val img = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_IMG))
+                val descripcion = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_DESCRIPCION))
+
+                platos.add(PlatoModel(platoId, name, precio, category, restaurant, estado, rank, img, descripcion))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return platos
+    }
+
 
 }

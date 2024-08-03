@@ -3,6 +3,7 @@ package tacora.ronald.tacoraronaldo_o.activitys
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import tacora.ronald.tacoraronaldo_o.R
@@ -13,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var etPlatoName: EditText
     private lateinit var etPlatoPrecio: EditText
     private lateinit var etPlatoCategory: EditText
+    private lateinit var etPlatoRestaurant: EditText
+    private lateinit var etPlatoEstado: EditText
     private lateinit var etPlatoRank: EditText
     private lateinit var etPlatoImg: EditText
     private lateinit var etPlatoDescripcion: EditText
@@ -29,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         etPlatoName = findViewById(R.id.etPlatoName)
         etPlatoPrecio = findViewById(R.id.etPlatoPrecio)
         etPlatoCategory = findViewById(R.id.etPlatoCategory)
+        etPlatoRestaurant = findViewById(R.id.etPlatoRestaurant)
+        etPlatoEstado =findViewById(R.id.etPlatoEstado)
         etPlatoRank = findViewById(R.id.etPlatoRank)
         etPlatoImg = findViewById(R.id.etPlatoImg)
         etPlatoDescripcion = findViewById(R.id.etPlatoDescripcion)
@@ -38,16 +43,19 @@ class MainActivity : AppCompatActivity() {
             val name = etPlatoName.text.toString()
             val precio = etPlatoPrecio.text.toString().toDoubleOrNull()
             val category = etPlatoCategory.text.toString()
+            val restaurant = etPlatoRestaurant.text.toString()
+            val estado = etPlatoEstado.text.toString()
             val rank = etPlatoRank.text.toString().toDoubleOrNull()
             val img = etPlatoImg.text.toString()
             val descripcion = etPlatoDescripcion.text.toString()
 
-            if (name.isNotEmpty() && precio != null && category.isNotEmpty() && rank != null && img.isNotEmpty() && descripcion.isNotEmpty()) {
-                val success = dbHelper.insertarPlato(name, precio, category, rank, img, descripcion)
+            if (name.isNotEmpty() && precio != null && category.isNotEmpty() && restaurant.isNotEmpty() && estado.isNotEmpty()
+                && rank != null && img.isNotEmpty() && descripcion.isNotEmpty()) {
+                val success = dbHelper.insertarPlato(name, precio, category, restaurant, estado, rank, img, descripcion)
                 if (success) {
                     Toast.makeText(this, "Plato registrado exitosamente", Toast.LENGTH_SHORT).show()
-                    // Aquí puedes asociar el plato con un restaurante si es necesario
-                    // dbHelper.asociarPlatoConRestaurant(restaurantId, platoId)
+
+
                 } else {
                     Toast.makeText(this, "Error al registrar el plato", Toast.LENGTH_SHORT).show()
                 }

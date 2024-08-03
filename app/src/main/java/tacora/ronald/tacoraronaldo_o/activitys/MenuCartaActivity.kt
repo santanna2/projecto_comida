@@ -17,11 +17,19 @@ class MenuCartaActivity : AppCompatActivity() {
   lateinit var navegation : BottomNavigationView
   private lateinit var biteDataBaseHelper: BiteDataBaseHelper
   private var restaurantId: Int = -1
+  private lateinit var categoria: String
+
   private val moNavMenu = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId){
             R.id.firstFragment -> {
-                supportFragmentManager.commit{
-                    replace<FirstFragment>(R.id.fragment_container)
+                val fragment = FirstFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("RESTAURANT_ID", restaurantId)
+                        putString("CATEGORIA", categoria)
+                    }
+                }
+                supportFragmentManager.commit {
+                    replace(R.id.fragment_container, fragment)
                     setReorderingAllowed(true)
                     addToBackStack("replacement")
                 }
@@ -29,22 +37,33 @@ class MenuCartaActivity : AppCompatActivity() {
             }
 
             R.id.secondFragment -> {
-                supportFragmentManager.commit{
-                    replace<SecondFragment>(R.id.fragment_container)
+                val fragment = SecondFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("RESTAURANT_ID", restaurantId)
+                        putString("CATEGORIA", "Almuerzo")
+                    }
+                }
+                supportFragmentManager.commit {
+                    replace(R.id.fragment_container, fragment)
                     setReorderingAllowed(true)
                     addToBackStack("replacement")
                 }
                 return@OnNavigationItemSelectedListener true
             }
             R.id.tirdFragment -> {
-                supportFragmentManager.commit{
-                    replace<cenaFragment>(R.id.fragment_container)
+                val fragment = cenaFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("RESTAURANT_ID", restaurantId)
+                        putString("CATEGORIA", "Cena")
+                    }
+                }
+                supportFragmentManager.commit {
+                    replace(R.id.fragment_container, fragment)
                     setReorderingAllowed(true)
                     addToBackStack("replacement")
                 }
                 return@OnNavigationItemSelectedListener true
             }
-
         }
         false
     }
@@ -53,16 +72,23 @@ class MenuCartaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_menu_carta)
 
         biteDataBaseHelper = BiteDataBaseHelper(this)
-        // Recibir el ID del restaurante desde el Intent
         restaurantId = intent.getIntExtra("RESTAURANT_ID", -1)
+        categoria = intent.getStringExtra("CATEGORIA") ?: "N/A"
 
         navegation = findViewById(R.id.navegacionMenu)
         navegation.setOnNavigationItemSelectedListener(moNavMenu)
 
-        supportFragmentManager.commit {
-            replace<FirstFragment>(R.id.fragment_container)
-            setReorderingAllowed(true)
-            addToBackStack("replacement")
+        if (savedInstanceState == null) {
+            supportFragmentManager.commit {
+                replace(R.id.fragment_container, FirstFragment().apply {
+                    arguments = Bundle().apply {
+                        putInt("RESTAURANT_ID", restaurantId)
+                        putString("CATEGORIA", categoria)
+                    }
+                })
+                setReorderingAllowed(true)
+                addToBackStack("replacement")
+            }
         }
 
         // Cargar información del restaurante si es necesario
@@ -79,14 +105,13 @@ class MenuCartaActivity : AppCompatActivity() {
             finish()
         }
         cartera.setOnClickListener{
-            val intent3 = Intent(this, CarritoActivity::class.java)
-            startActivity(intent3)
+            val intent = Intent(this, CarritoActivity::class.java)
+            startActivity(intent)
             finish()
         }
         cuenta.setOnClickListener{
-            val intent4 = Intent(this, CuentaActivity::class.java)
-            startActivity(intent4)
-            finish()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
     }

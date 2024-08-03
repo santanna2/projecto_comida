@@ -21,22 +21,30 @@ class RestaurantAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
-    var restaurant1:List<RestaurantCompany> = emptyList()
+    // Eliminar esta variable no utilizada
+    // var restaurant1:List<RestaurantCompany> = emptyList()
+    // Actualizar lista no se usa, si es necesario mantenerlo, déjalo
+    // fun actualizarLista(lst:List<RestaurantCompany>){
+    //     restaurant1 = lst
+    //     notifyDataSetChanged()
+    // }
 
-    fun actualizarLista(lst:List<RestaurantCompany>){
-        restaurant1 = lst
-        notifyDataSetChanged()
-    }
     class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val rvRestaurant = view.findViewById<TextView>(R.id.modelRestaurant)
-        val rvCategory = view.findViewById<TextView>(R.id.modelCategory)
-        val rvImagine = view.findViewById<ImageView>(R.id.portadaRestaurant)
+        val rvRestaurant: TextView = view.findViewById(R.id.modelRestaurant)
+        val rvCategory: TextView = view.findViewById(R.id.modelCategory)
+        val rvImagine: ImageView = view.findViewById(R.id.portadaRestaurant)
 
-        val btnIngresar = view.findViewById<Button>(R.id.rv_res_ingresar)
-        val btnInformacion = view.findViewById<Button>(R.id.rv_res_informacion)
+        val btnIngresar: Button = view.findViewById(R.id.rv_res_ingresar)
+        val btnInformacion: Button = view.findViewById(R.id.rv_res_informacion)
 
-        fun setValues(model: RestaurantCompany){
+        fun setValues(model: ModelRestaurant) {
+            rvRestaurant.text = model.name
+            rvCategory.text = model.category
 
+            // Utilizar Glide para cargar la imagen
+            Glide.with(rvImagine.context)
+                .load(model.img) // Cargar la imagen desde la URL
+                .into(rvImagine)
         }
     }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
@@ -56,8 +64,10 @@ class RestaurantAdapter(
             .into(holder.rvImagine)
 
         holder.btnIngresar.setOnClickListener {
-            val intent = Intent(context, MenuCartaActivity::class.java)
-            intent.putExtra("RESTAURANT_ID", restaurant.id) // Pasar el ID del restaurante si es necesario
+            val intent = Intent(context, MenuCartaActivity::class.java).apply {
+                putExtra("RESTAURANT_ID", restaurant.id)
+                putExtra("CATEGORIA", "Desayuno")
+            }
             context.startActivity(intent)
         }
 
