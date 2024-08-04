@@ -21,14 +21,6 @@ class RestaurantAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
-    // Eliminar esta variable no utilizada
-    // var restaurant1:List<RestaurantCompany> = emptyList()
-    // Actualizar lista no se usa, si es necesario mantenerlo, déjalo
-    // fun actualizarLista(lst:List<RestaurantCompany>){
-    //     restaurant1 = lst
-    //     notifyDataSetChanged()
-    // }
-
     class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val rvRestaurant: TextView = view.findViewById(R.id.modelRestaurant)
         val rvCategory: TextView = view.findViewById(R.id.modelCategory)
@@ -71,10 +63,9 @@ class RestaurantAdapter(
             context.startActivity(intent)
         }
 
-        // Configurar clic en btnInformacion para abrir la información del restaurante
         holder.btnInformacion.setOnClickListener {
             val intent = Intent(context, RestaurantInformacion::class.java)
-            intent.putExtra("RESTAURANT_ID", restaurant.id) // Pasar el ID del restaurante si es necesario
+            intent.putExtra("RESTAURANT_ID", restaurant.id)
             context.startActivity(intent)
         }
     }

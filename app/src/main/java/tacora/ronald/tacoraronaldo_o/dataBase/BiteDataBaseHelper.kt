@@ -229,6 +229,53 @@ class BiteDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         return result != -1L
     }
 
+    fun ObtenerPlatosPendientes(): List<PlatoModel> {
+        val platoList = mutableListOf<PlatoModel>()
+        val db = this.readableDatabase
+        val query = "SELECT * FROM $TABLE_PLATO WHERE $COLUMN_PLATO_ESTADO = 'pendiente'"
+        val cursor = db.rawQuery(query, null)
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_PLATO_ID))
+                val name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_NAME))
+                val precio = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PLATO_PRECIO))
+                val category = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_CATEGORY))
+                val restaurant = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_RESTAURANT))
+                val estado = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_ESTADO))
+                val rank = cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_PLATO_RANK))
+                val img = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_IMG))
+                val descripcion = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_DESCRIPCION))
+                val plato = PlatoModel(id, name, precio, category, restaurant, estado, rank, img, descripcion)
+                platoList.add(plato)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return platoList
+    }
+    fun ObtenerPlatosActivos(): List<PlatoModel> {
+        val platoList = mutableListOf<PlatoModel>()
+        val db = this.readableDatabase
+        val query = "SELECT * FROM $TABLE_PLATO WHERE $COLUMN_PLATO_ESTADO = 'activo'"
+        val cursor = db.rawQuery(query, null)
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_PLATO_ID))
+                val name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_NAME))
+                val precio = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PLATO_PRECIO))
+                val category = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_CATEGORY))
+                val restaurant = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_RESTAURANT))
+                val estado = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_ESTADO))
+                val rank = cursor.getFloat(cursor.getColumnIndexOrThrow(COLUMN_PLATO_RANK))
+                val img = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_IMG))
+                val descripcion = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PLATO_DESCRIPCION))
+                val plato = PlatoModel(id, name, precio, category, restaurant, estado, rank, img, descripcion)
+                platoList.add(plato)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return platoList
+    }
+
     fun obtenerHistorialPedidos(usuarioId: Int): List<DetallePedidoModel> {
         val detalles = mutableListOf<DetallePedidoModel>()
         val db = this.readableDatabase
@@ -253,12 +300,12 @@ class BiteDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
     fun ActualizarUsuario(id: Int, nombre: String, apellido: String, usuario: String, contraseña: String, telefono: String, email: String): Int {
         val db = this.writableDatabase
         val contentValues = ContentValues()
-        contentValues.put(COLUMN_NAME, nombre) // Usar COLUMN_NAME en lugar de "Nombre"
-        contentValues.put(COLUMN_APELLIDO, apellido) // Usar COLUMN_APELLIDO en lugar de "Apellido"
-        contentValues.put(COLUMN_USERNAME, usuario) // Usar COLUMN_USERNAME en lugar de "Usuario"
-        contentValues.put(COLUMN_PASSWORD, contraseña) // Usar COLUMN_PASSWORD en lugar de "Contraseña"
-        contentValues.put(COLUMN_TELEFONO, telefono) // Usar COLUMN_TELEFONO en lugar de "Telefono"
-        contentValues.put(COLUMN_EMAIL, email) // Usar COLUMN_EMAIL en lugar de "Email"
+        contentValues.put(COLUMN_NAME, nombre)
+        contentValues.put(COLUMN_APELLIDO, apellido)
+        contentValues.put(COLUMN_USERNAME, usuario)
+        contentValues.put(COLUMN_PASSWORD, contraseña)
+        contentValues.put(COLUMN_TELEFONO, telefono)
+        contentValues.put(COLUMN_EMAIL, email)
         return db.update(TABLE_NAME, contentValues, "$COLUMN_ID = ?", arrayOf(id.toString()))
     }
     fun menu(id: Int, categoria: String): List<PlatoModel> {
@@ -302,5 +349,32 @@ class BiteDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         }
     }
 
+    fun modificarPlato(plato: PlatoModel) {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_PLATO_NAME, plato.name)
+            put(COLUMN_PLATO_PRECIO, plato.precio)
+            put(COLUMN_PLATO_CATEGORY, plato.category)
+            put(COLUMN_PLATO_RESTAURANT, plato.restaurant)
+            put(COLUMN_PLATO_ESTADO, plato.estado)
+            put(COLUMN_PLATO_RANK, plato.rank)
+            put(COLUMN_PLATO_IMG, plato.img)
+            put(COLUMN_PLATO_DESCRIPCION, plato.descripcion)
+        }
+        db.update(
+            TABLE_PLATO,
+            values,
+            "$COLUMN_PLATO_ID = ?",
+            arrayOf(plato.id.toString())
+        )
+    }
 
+    fun eliminarPlato(id: Int) {
+        val db = this.writableDatabase
+        db.delete(
+            TABLE_PLATO,
+            "$COLUMN_PLATO_ID = ?",
+            arrayOf(id.toString())
+        )
+    }
 }

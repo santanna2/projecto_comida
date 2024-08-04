@@ -28,12 +28,18 @@ class RestaurantInformacion : AppCompatActivity() {
             // Obtener información del restaurante usando el ID
             val restaurant = biteDataBaseHelper.ObtenerRestaurants().find { it.id == restaurantId }
             val btnCalificar = findViewById<Button>(R.id.btnCalificar)
+            val btnOrdenar = findViewById<Button>(R.id.btnOrder)
 
-        btnCalificar.setOnClickListener{
-            val intent = Intent(this, CalificarActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+            btnCalificar.setOnClickListener{
+                val intent = Intent(this, CalificarActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            btnOrdenar.setOnClickListener{
+                val intent = Intent(this,HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 }

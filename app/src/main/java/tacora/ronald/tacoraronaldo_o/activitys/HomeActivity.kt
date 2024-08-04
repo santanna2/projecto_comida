@@ -47,18 +47,15 @@ class HomeActivity : AppCompatActivity() {
         cartera.setOnClickListener{
             val intent3 = Intent(this, CarritoActivity::class.java)
             startActivity(intent3)
-            finish()
         }
         cuenta.setOnClickListener{
             val intent4 = Intent(this, CuentaActivity::class.java)
             startActivity(intent4)
-            finish()
         }
 
         necesario.setOnClickListener{
             val intent = Intent(this,RegistroRestaurant::class.java)
             startActivity(intent)
-            finish()
         }
         val restaurantList = biteDataBaseHelper.ObtenerRestaurants()
 

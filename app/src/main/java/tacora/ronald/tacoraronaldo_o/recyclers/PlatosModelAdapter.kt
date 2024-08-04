@@ -19,7 +19,6 @@ class PlatosModelAdapter(private val dbHelper: BiteDataBaseHelper): RecyclerView
         notifyDataSetChanged()
     }
 
-    // ViewHolder modificado para recibir dbHelper
     class ViewHolder(view: View, private val dbHelper: BiteDataBaseHelper) : RecyclerView.ViewHolder(view) {
         val tvNombre: TextView = view.findViewById(R.id.modelPlato)
         val tvCategory: TextView = view.findViewById(R.id.modelComidaCategory)

@@ -120,9 +120,9 @@ class MenuCartaActivity : AppCompatActivity() {
         val restaurant = biteDataBaseHelper.ObtenerRestaurants().find { it.id == restaurantId }
 
         val bundle = Bundle()
-        bundle.putParcelable("RESTAURANT_DATA", restaurant) // Asumiendo que ModelRestaurant implementa Parcelable
+        bundle.putParcelable("RESTAURANT_DATA", restaurant)
 
-        val fragment = FirstFragment() // O el fragmento que desees
+        val fragment = FirstFragment()
         fragment.arguments = bundle
 
         // Reemplazar el fragmento con la información del restaurante

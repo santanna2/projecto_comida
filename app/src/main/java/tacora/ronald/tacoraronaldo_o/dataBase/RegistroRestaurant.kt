@@ -54,13 +54,7 @@ class RegistroRestaurant : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (addUserToDatabase(
-                    name,
-                    category,
-                    adress,
-                    img,
-                    rank,
-                    phone
+            if (addUserToDatabase(name, category, adress, img, rank, phone
                 )) {
                 val intent = Intent(this, HomeActivity::class.java)
                 Toast.makeText(this, "Registrado con exito", Toast.LENGTH_SHORT).show()
@@ -72,7 +66,6 @@ class RegistroRestaurant : AppCompatActivity() {
             }
         }
         cancelButton.setOnClickListener {
-            // Acción al hacer clic en Cancelar, por ejemplo, regresar a la actividad anterior
             finish()
         }
     }
