@@ -32,7 +32,7 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         biteDataBaseHelper = BiteDataBaseHelper(requireContext())
-        adapter = PlatosModelAdapter()
+        adapter = PlatosModelAdapter(biteDataBaseHelper)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.itemDesayuno)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -42,7 +42,7 @@ class FirstFragment : Fragment() {
 
         arguments?.let {
             restaurantId = it.getInt("RESTAURANT_ID", -1)
-            categoria = it.getString("CATEGORIA","null")
+            categoria = "Desayuno"
         }
         loadPlatos()
     }

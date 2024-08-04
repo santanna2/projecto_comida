@@ -93,9 +93,10 @@
                     app:cardCornerRadius="10dp">
 
                     <Button
+                        android:id="@+id/btnADD"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/derecha"
+                        android:text="añadir"
                         android:padding="1dp"
                         android:textSize="12dp" />
                 </androidx.cardview.widget.CardView>

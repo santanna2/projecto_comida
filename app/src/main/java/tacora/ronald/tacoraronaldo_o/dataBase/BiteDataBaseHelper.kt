@@ -291,6 +291,16 @@ class BiteDataBaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_
         cursor.close()
         return platos
     }
+    fun actualizarPlatoEstado(platoId: Int, nuevoEstado: String) {
+        val db = writableDatabase
+        val contentValues = ContentValues().apply {
+            put(COLUMN_PLATO_ESTADO, nuevoEstado)
+        }
+        val rowsAffected = db.update(TABLE_PLATO, contentValues, "$COLUMN_PLATO_ID = ?", arrayOf(platoId.toString()))
+        if (rowsAffected <= 0) {
+            throw Exception("No se pudo actualizar el estado del plato con ID: $platoId")
+        }
+    }
 
 
 }
